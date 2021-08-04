@@ -1,4 +1,4 @@
-# Consul-Terraform-Sync + Palo Alto Networks NGFW Lab
+# Consul-Terraform-Sync + Palo Alto Networks NGFW Demo
 
 ![architecture](images/architecture.png)
 
