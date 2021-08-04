@@ -1,11 +1,12 @@
-# Consul-Terraform-Sync + Palo Alto Networks NGFW Demo
+# Consul-Terraform-Sync + Palo Alto Networks NGFW Lab
+
+![architecture](images/architecture.png)
 
 ## Prerequisites 
 
 - Docker
 - Docker Compose
 - Palo Alto Networks Panorama or a NGFW
-
 
 ## Setup
 1. Clone this repository
@@ -19,21 +20,21 @@
 3. `docker-compose up -d`
 
 ## Testing procedure
-1. Navigate to http://localhost:8500/ui on your local browser.
-2. Explore DNS service and health check.
+1. Navigate to http://localhost:8500/ui on your local browser
+2. Explore DNS service and health check
 3. Open an SSH session to the firewall
 4. View the registered-ip entries on the firewall
-```
-show object registered-ip all
-```
+    ```
+    show object registered-ip all
+    ```
 5. Scale out DNS servers
-```
-docker-compose up --scale consul-client=2 -d
-```
+    ```
+    docker-compose up --scale consul-client=2 -d
+    ```
 6. View the registered-ip entries on the firewall
-```
-show object registered-ip all
-```
+    ```
+    show object registered-ip all
+    ```
 
 ## Commands
 
