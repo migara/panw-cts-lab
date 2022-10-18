@@ -14,7 +14,6 @@ consul {
 driver "terraform" {
   log = true
   path = "/consul-terraform-sync/"
-  working_dir = "/consul-terraform-sync/"
   required_providers {
     panos = {
       source = "PaloAltoNetworks/panos"
@@ -35,7 +34,7 @@ terraform_provider "panos" {
 task {
   name = "DAG_Web_App"
   description = "Automate population of dynamic address group"
-  source = "PaloAltoNetworks/dag-nia/panos"
+  module = "PaloAltoNetworks/dag-nia/panos"
   providers = ["panos.panos1"]
   services = ["web", "app", "dns"]
 }
