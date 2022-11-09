@@ -3,7 +3,7 @@ version: '3.7'
 services:
   
   consul-server:
-    image: hashicorp/consul:1.10.0
+    image: hashicorp/consul:1.13.3
     container_name: consul-server
     restart: always
     volumes:
@@ -17,7 +17,7 @@ services:
     command: "agent"
 
   consul-client:
-    image: hashicorp/consul:1.10.0
+    image: hashicorp/consul:1.13.3
     # container_name: consul-client
     restart: always
     volumes:
@@ -36,6 +36,7 @@ services:
       - PANOS_HOSTNAME=${PANOS_HOSTNAME}
       - PANOS_USERNAME=${PANOS_USERNAME}
       - PANOS_API_KEY=${PANOS_API_KEY}
+      - CONSUL_HTTP_ADDR=consul-server:8500
     networks:
       - consul
     command: "consul-terraform-sync -config-file=/config/cts.hcl"

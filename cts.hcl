@@ -7,7 +7,15 @@ buffer_period {
 
 # Configures Consul-Terraform-Sync connection with a Consul agent to perform queries to the Consul catalog
 consul {
-  address = "consul-server:8500"
+    address = "consul-server:8500"
+    service_registration {
+      enabled = true
+      service_name = "consul-terraform-sync"
+      default_check {
+        enabled = true
+        address = "http://consul-terraform-sync:8558"
+      }
+    }
 }
 
 # Relays provider discovery and installation information to Terraform
@@ -32,9 +40,9 @@ terraform_provider "panos" {
 
 # A task is executed when any change to the defined services are detected in the Consul catalog
 task {
-  name = "DAG_Web_App"
+  name = "Demo-Application"
   description = "Automate population of dynamic address group"
   module = "PaloAltoNetworks/dag-nia/panos"
   providers = ["panos.panos1"]
-  services = ["web", "app", "dns"]
+  services = ["dns"]
 }
